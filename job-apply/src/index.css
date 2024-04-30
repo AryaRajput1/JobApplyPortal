@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
@@ -22,4 +26,23 @@ nav {
   margin: 20px auto;
   display: flex;
   flex-wrap: wrap;
+}
+
+.job-list{
+  display: flex;
+  flex-wrap: wrap;
+  margin:auto;
+  width:90%;
+}
+
+.card {
+  margin:20px;
+}
+
+.job-description {
+  overflow: hidden;
+  mask-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+}
+
+.job-description::after {
 }
