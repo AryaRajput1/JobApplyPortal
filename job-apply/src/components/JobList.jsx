@@ -5,7 +5,7 @@ function JobList({ list }) {
   return (
     <div className="job-list flex items-center w-full">
       {list?.map((jdItem, index) => {
-       return <JobCard key={index} jobDetails={jdItem} />;
+        return <JobCard key={index} jobDetails={jdItem} />;
       })}
     </div>
   );

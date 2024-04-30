@@ -20,10 +20,10 @@ export const useFetchJobsList = (limit = 10, offset) => {
         fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                setJobList(prev=> ([...prev,...result.jdList]))
+                setJobList(prev => ([...prev, ...result.jdList]))
                 setIsLoading(false)
             })
             .catch((error) => console.error(error));
     }, [offset])
-    return {isLoading,jobList}
+    return { isLoading, jobList }
 }

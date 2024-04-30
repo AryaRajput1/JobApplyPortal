@@ -11,8 +11,11 @@ const App = () => {
   const { isLoading, jobList } = useFetchJobsList(10, offset);
   useEffect(() => {
     window.addEventListener("scroll", (e) => {
-      if (window.innerHeight + window.scrollY + 10 >= document.body.offsetHeight) {
-        setOffset( prev => prev + 1);
+      if (
+        window.innerHeight + window.scrollY + 10 >=
+        document.body.offsetHeight
+      ) {
+        setOffset((prev) => prev + 1);
       }
     });
   }, []);
