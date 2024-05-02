@@ -8,21 +8,26 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 const App = () => {
   const [offset, setOffset] = useState(0);
-  const { isLoading, jobList } = useFetchJobsList(10, offset);
+  const [allFilters, setAllFilters] = useState({});
+  const { isLoading, jobList } = useFetchJobsList(10, offset, allFilters);
+  
+
+  const scrollHandler = (e) => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setOffset((prev) => prev + 1);
+    }
+  }
   useEffect(() => {
-    window.addEventListener("scroll", (e) => {
-      if (
-        window.innerHeight + window.scrollY + 10 >=
-        document.body.offsetHeight
-      ) {
-        setOffset((prev) => prev + 1);
-      }
-    });
+    window.addEventListener("scroll", scrollHandler)
+    return () => window.removeEventListener("scroll", scrollHandler)
   }, []);
   return (
     <>
       <Header />
-      <Filter />
+      <Filter setAllFilters={setAllFilters}/>
       <JobList list={jobList} />
       {isLoading && (
         <div className="w-full flex items-center justify-center">

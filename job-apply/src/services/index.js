@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
-export const useFetchJobsList = (limit = 10, offset) => {
+export const useFetchJobsList = (limit = 10, offset, filters) => {
     const [jobList, setJobList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const raw = JSON.stringify({
@@ -13,7 +13,8 @@ export const useFetchJobsList = (limit = 10, offset) => {
     const requestOptions = {
         method: "POST",
         headers: myHeaders,
-        // raw
+        raw,
+        filters
     };
     useEffect(() => {
         setIsLoading(true)
@@ -24,6 +25,6 @@ export const useFetchJobsList = (limit = 10, offset) => {
                 setIsLoading(false)
             })
             .catch((error) => console.error(error));
-    }, [offset])
+    }, [offset, filters])
     return { isLoading, jobList }
 }

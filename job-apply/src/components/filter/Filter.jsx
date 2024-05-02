@@ -8,17 +8,17 @@ import {
   ROLES,
   TECH_STACK,
 } from "../../constants";
+import AppInput from "../AppInput/AppInput";
 
-function Filter() {
-  const [allFilters, setAllFilters] = useState({});
+function Filter({ setAllFilters }) {
   const onChange = (key, value) => {
     setAllFilters((oldFilters) => {
-      setAllFilters({ ...oldFilters, [key]: value });
+      return { ...oldFilters, [key]: value };
     });
   };
 
   return (
-    <div className="filters md:justify-start justify-center">
+    <div className="filters md:justify-start justify-center items-center gap-2">
       <AppSelect
         multiple={true}
         options={ROLES}
@@ -59,6 +59,11 @@ function Filter() {
         options={MIN_BASE_PAY}
         id="minBasePay"
         label="Minimum Base Pay Salary"
+        onChange={onChange}
+      />
+      <AppInput
+        label={"Enter Company Name"}
+        id="companyName"
         onChange={onChange}
       />
     </div>
